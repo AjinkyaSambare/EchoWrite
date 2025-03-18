@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // Enable layer-backing for animations
             button.wantsLayer = true
             
+            
             // Setup click handling
             button.action = #selector(togglePopover)
             button.target = self
