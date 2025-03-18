@@ -17,7 +17,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusItem?.button {
             // Set initial icon
             button.image = createStatusIcon(isProcessing: false)
-            
             // Enable layer-backing for animations
             button.wantsLayer = true
             // Setup click handling
