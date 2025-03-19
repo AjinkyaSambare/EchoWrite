@@ -24,18 +24,15 @@ class WhisperModel {
     private func loadBinaryModel() {
         guard !isModelLoaded else { return }
         
-        do {
-            if let modelPath = Bundle.main.path(forResource: "ggml-tiny.en", ofType: "bin") {
-                let modelURL = URL(fileURLWithPath: modelPath)
-                whisper = try Whisper(fromFileURL: modelURL)
-                whisper?.params = params
-                isModelLoaded = true
-                print("Tiny binary model loaded successfully from \(modelURL.path)")
-            } else {
-                print("Error: Tiny binary model file not found in the app bundle.")
-            }
-        } catch {
-            print("Error loading Whisper model: \(error.localizedDescription)")
+        if let modelPath = Bundle.main.path(forResource: "ggml-tiny.en", ofType: "bin") {
+            let modelURL = URL(fileURLWithPath: modelPath)
+            // Remove the try since the initializer doesn't throw
+            whisper = Whisper(fromFileURL: modelURL)
+            whisper?.params = params
+            isModelLoaded = true
+            print("Tiny binary model loaded successfully from \(modelURL.path)")
+        } else {
+            print("Error: Tiny binary model file not found in the app bundle.")
         }
     }
     
